@@ -1,6 +1,7 @@
 .card {
   margin-top: 10px;
 }
+
 .input-container {
   margin: 20px;
   position: relative;
@@ -34,6 +35,20 @@
   animation: anim 1s linear infinite;
 }
 
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forcast {
+  margin: 30px 0px;
+}
+
+.slider {
+  width: 90%;
+}
+
 @keyframes anim {
   0%,
   100% {
@@ -46,17 +61,21 @@
 }
 
 .main-pane {
+  height: 100vh;
+}
+
+body {
   background-color: beige;
 }
 
 .small-cards {
-  width: 190px;
+  width: 250px;
   height: 254px;
   color: white;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: 5px;
+  gap: 10px;
   overflow: visible;
 }
 
@@ -122,4 +141,11 @@
 
 .text--4 {
   color: rgba(220, 91, 183, 1);
+}
+
+@media screen and (max-width: 800px) {
+  .forcast {
+    display: flex;
+    flex-direction: column;
+  }
 }
