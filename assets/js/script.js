@@ -91,6 +91,11 @@ const setData = (data) => {
   document.getElementById("icon-weather").innerHTML = `<img src="https://${
     data.condition.icon.split("//")[1]
   }">`;
+  document.getElementById("humid").innerText = `${data.humidity}`;
+  document.getElementById("feellike").innerText = `${data.feelslike_c} °C`;
+  document.getElementById("pressure").innerText = `${data.pressure_mb} hPa`;
+  document.getElementById("uv").innerText = `${data.uv}`;
+  document.getElementById("visib").innerText = `${data.vis_km} km`;
 
   setCompass(data.wind_dir, data.wind_kph);
   setAQ(data.air_quality);
