@@ -972,7 +972,7 @@
         <h2 class="text-lg font-semibold text-gray-800 mb-4">
           Weather Prediction
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="predic_div">
           <div class="bg-purple-200 rounded-lg p-4">
             <p class="text-gray-700" id="h1_time">12:00 PM</p>
             <div class="wi text-2xl">
@@ -1077,6 +1077,21 @@
         <div class="flex justify-center">
           <div id="weather-map" class="w-full h-64"></div>
         </div>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-4 mt-4">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">3 Days History</h2>
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="px-4 py-2">Date</th>
+              <th class="px-4 py-2">Temperature</th>
+              <th class="px-4 py-2"></th>
+              <th class="px-4 py-2">Condition</th>
+            </tr>
+          </thead>
+          <tbody id="history-table"></tbody>
+        </table>
       </div>
     </div>
     <script src="/assets/js/script.js"></script>

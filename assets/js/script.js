@@ -99,22 +99,18 @@ const setCurrentWeather = (data) => {
 
 const setPredictionToday = (data) => {
   const currentHour = new Date().getHours();
-  for (
-    let index = currentHour + 1, y = 1;
-    index < currentHour + 5;
-    index++, y++
-  ) {
+  console.log(data);
+  for (let index = currentHour + 1, y = 1; y <= 4; index++, y++) {
+    const hour = index > 23 ? index - 24 : index;
     document.getElementById(`h${y}_time`).innerText = `${
-      data[index].time.split(" ")[1]
+      data[hour].time.split(" ")[1]
     }`;
     document.getElementById(
       `h${y}_icon-weather`
     ).innerHTML = `<img src="https://${
-      data[index].condition.icon.split("//")[1]
+      data[hour].condition.icon.split("//")[1]
     }">`;
-    document.getElementById(
-      `h${y}_temp`
-    ).innerText = `${data[index].temp_c} °C`;
+    document.getElementById(`h${y}_temp`).innerText = `${data[hour].temp_c} °C`;
   }
 };
 
