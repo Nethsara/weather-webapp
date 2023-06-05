@@ -1,47 +1,44 @@
 const getCurrentLocation = () => {
+  if (!navigator.geolocation) {
+    return Promise.reject(
+      new Error("Geolocation is not supported by your browser")
+    );
+  }
+
   return new Promise((resolve, reject) => {
-    if (!navigator.geolocation) {
-      reject(new Error("Geolocation is not supported by your browser"));
-    } else {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          resolve({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude,
-          });
-        },
-        (error) => {
-          reject(new Error(`Error retrieving location: ${error.message}`));
-        }
-      );
-    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      },
+      (error) => {
+        reject(new Error(`Error retrieving location: ${error.message}`));
+      }
+    );
   });
 };
 
-const retrieveData = async (latitude, longitude) => {
-  console.log(latitude, "ret");
-  return fetch(
+const retrieveWeather = async (latitude, longitude) => {
+  const response = await fetch(
     `http://api.weatherapi.com/v1/current.json?aqi=yes&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      return data;
-    });
+  );
+  const data = await response.json();
+  return data;
 };
 
 const setLocation = (location) => {
   document.getElementById(
     "current-location"
-  ).innerText = `Location : ${location.name} / ${location.country}`;
+  ).innerText = `Location: ${location.name} / ${location.country}`;
   document.getElementById(
     "last-updated-time"
-  ).innerText = ` Last Updated: ${location.localtime}`;
+  ).innerText = `Last Updated: ${location.localtime}`;
 };
 
 const setCompass = (dir, wind) => {
   document.getElementById("windSpeed").innerText = wind;
-
-  console.log(dir);
 
   const compassMap = {
     N: 0,
@@ -63,14 +60,12 @@ const setCompass = (dir, wind) => {
   };
 
   const deg = compassMap[dir];
-  console.log(deg);
 
   if (typeof deg !== "undefined") {
     const rotationAngle = (deg + 180) % 360;
-    window.requestAnimationFrame(() => {
-      document.getElementById("arrowSVG").style.transform =
-        "rotate(" + rotationAngle + "deg)";
-    });
+    document.getElementById(
+      "arrowSVG"
+    ).style.transform = `rotate(${rotationAngle}deg)`;
   }
 };
 
@@ -84,9 +79,7 @@ const setAQ = (aq) => {
       : "Unhealthy";
 };
 
-const setData = (data) => {
-  console.log(data);
-  console.log();
+const setCurrentWeather = (data) => {
   document.getElementById("temp").innerText = `${data.temp_c} °C`;
   document.getElementById("icon-weather").innerHTML = `<img src="https://${
     data.condition.icon.split("//")[1]
@@ -96,6 +89,9 @@ const setData = (data) => {
   document.getElementById("pressure").innerText = `${data.pressure_mb} hPa`;
   document.getElementById("uv").innerText = `${data.uv}`;
   document.getElementById("visib").innerText = `${data.vis_km} km`;
+  document.getElementById(
+    "today_condition"
+  ).innerText = `(${data.condition.text})`;
 
   setCompass(data.wind_dir, data.wind_kph);
   setAQ(data.air_quality);
@@ -104,15 +100,19 @@ const setData = (data) => {
 const getWeatherData = async () => {
   try {
     const location = await getCurrentLocation();
-    const weatherData = await retrieveData(
+    const weatherData = await retrieveWeather(
       location.latitude,
       location.longitude
     );
     setLocation(weatherData.location);
-    setData(weatherData.current);
+    setCurrentWeather(weatherData.current);
   } catch (error) {
     console.error(error);
   }
 };
 
-document.addEventListener("DOMContentLoaded", getWeatherData);
+const setWeather = () => {
+  getWeatherData();
+};
+
+document.addEventListener("DOMContentLoaded", setWeather);

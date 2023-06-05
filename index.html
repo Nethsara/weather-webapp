@@ -154,8 +154,10 @@
               <h2 class="text-lg font-semibold text-gray-800">
                 Today's Weather
               </h2>
+              <h4 id="today_condition">Cloudy</h4>
               <div class="wi text-4xl" id="icon-weather"></div>
             </div>
+
             <div>
               <p class="text-gray-700">
                 <svg
@@ -201,7 +203,6 @@
                 Feels Like:
                 <span class="font-semibold" id="feellike">28°C</span>
               </p>
-
               <p class="text-gray-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -1010,17 +1011,30 @@
           Sunrise and Sunset
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="bg-yellow-200 rounded-lg p-4">
+          <div class="bg-purple-200 rounded-lg p-4">
             <div class="wi text-2xl">
-              <i class="wi-sunrise text-yellow-600"></i>
+              <i class="wi-sunrise text-purple-600"></i>
             </div>
             <p class="text-gray-700">Sunrise: 6:00 AM</p>
           </div>
-          <div class="bg-purple-200 rounded-lg p-4">
+          <div class="bg-teal-200 rounded-lg p-4">
             <div class="wi text-2xl">
-              <i class="wi-sunset text-purple-600"></i>
+              <i class="wi-sunset text-teal-600"></i>
             </div>
             <p class="text-gray-700">Sunset: 7:30 PM</p>
+          </div>
+          <div class="bg-indigo-200 rounded-lg p-4">
+            <div class="wi text-2xl">
+              <i class="wi-moonrise text-indigo-600"></i>
+            </div>
+            <p class="text-gray-700">Moonrise: 7:30 PM</p>
+          </div>
+
+          <div class="bg-red-200 rounded-lg p-4">
+            <div class="wi text-2xl">
+              <i class="wi-moonset text-red-600"></i>
+            </div>
+            <p class="text-gray-700">Moonset: 7:30 PM</p>
           </div>
         </div>
       </div>
