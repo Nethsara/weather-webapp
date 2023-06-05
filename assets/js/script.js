@@ -38,7 +38,14 @@ const setLocation = (location) => {
   ).innerText = ` Last Updated: ${location.localtime}`;
 };
 
-const setData = (data) => {};
+const setData = (data) => {
+  console.log(data);
+  console.log();
+  document.getElementById("temp").innerText = `${data.temp_c} °C`;
+  document.getElementById("icon-weather").innerHTML = `<img src="https://${
+    data.condition.icon.split("//")[1]
+  }">`;
+};
 
 const getWeatherData = async () => {
   try {
