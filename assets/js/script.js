@@ -1,3 +1,11 @@
+const today = new Date();
+let endDate = today.toISOString().split("T")[0];
+const sevenDaysAgo = new Date();
+sevenDaysAgo.setDate(today.getDate() - 7);
+let startDate = sevenDaysAgo.toISOString().split("T")[0];
+
+let latitude = "";
+let longitude = "";
 const getCurrentLocation = () => {
   if (!navigator.geolocation) {
     return Promise.reject(
@@ -20,9 +28,17 @@ const getCurrentLocation = () => {
   });
 };
 
-const retrieveWeather = async (latitude, longitude) => {
+const retrieveWeather = async () => {
   const response = await fetch(
     `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+  );
+  const data = await response.json();
+  return data;
+};
+
+const retrieveHistory = async () => {
+  const response = await fetch(
+    `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
   );
   const data = await response.json();
   return data;
@@ -99,7 +115,6 @@ const setCurrentWeather = (data) => {
 
 const setPredictionToday = (data) => {
   const currentHour = new Date().getHours();
-  console.log(data);
   for (let index = currentHour + 1, y = 1; y <= 4; index++, y++) {
     const hour = index > 23 ? index - 24 : index;
     document.getElementById(`h${y}_time`).innerText = `${
@@ -115,7 +130,6 @@ const setPredictionToday = (data) => {
 };
 
 const setAstro = (data) => {
-  console.log(typeof data);
   for (const key in data) {
     const el = document.getElementById(key);
     if (el) {
@@ -126,7 +140,6 @@ const setAstro = (data) => {
 };
 
 const setForecast = (data) => {
-  console.log(data);
   for (let i = 0; i < data.length; i++) {
     document.getElementById(`d${i + 1}_date`).innerText = `${data[i].date}`;
     document.getElementById(
@@ -140,22 +153,83 @@ const setForecast = (data) => {
   }
 };
 
+const setHistory = async () => {
+  const res = await retrieveHistory();
+  console.log(res);
+  const weatherData = res.forecast.forecastday;
+  const table = document.getElementById("history-table");
+
+  while (table.firstChild) {
+    table.removeChild(table.firstChild);
+  }
+  weatherData.forEach((element) => {
+    const day = element.day;
+
+    const row = document.createElement("tr");
+
+    const dateCell = document.createElement("td");
+    dateCell.textContent = element.date;
+    dateCell.classList.add("px-4", "py-2", "border", "text-center");
+    row.appendChild(dateCell);
+
+    const tempCell = document.createElement("td");
+    tempCell.textContent = day.avgtemp_c;
+    tempCell.classList.add("px-4", "py-2", "border", "text-center");
+
+    row.appendChild(tempCell);
+
+    const imageCell = document.createElement("td");
+    const image = document.createElement("img");
+    image.src = `https://${day.condition.icon.split("//")[1]}`;
+    imageCell.classList.add("px-4", "py-2", "border", "flex", "justify-center");
+
+    imageCell.appendChild(image);
+
+    row.appendChild(imageCell);
+
+    const conditionCell = document.createElement("td");
+    conditionCell.textContent = day.condition.text;
+    conditionCell.classList.add("px-4", "py-2", "border", "text-center");
+
+    row.appendChild(conditionCell);
+
+    table.appendChild(row);
+  });
+};
+
 const setWeather = async () => {
   try {
     const location = await getCurrentLocation();
-    const weatherData = await retrieveWeather(
-      location.latitude,
-      location.longitude
-    );
-    console.log(weatherData);
+    latitude = location.latitude;
+    longitude = location.longitude;
+    const weatherData = await retrieveWeather();
     setCurrentWeather(weatherData.current);
     setLocation(weatherData.location);
     setPredictionToday(weatherData.forecast.forecastday[0].hour);
     setAstro(weatherData.forecast.forecastday[0].astro);
     setForecast(weatherData.forecast.forecastday);
+    setHistory();
   } catch (error) {
     console.error(error);
   }
 };
 
 document.addEventListener("DOMContentLoaded", setWeather);
+
+document.getElementById("end-date").addEventListener("change", (e) => {
+  const selectedDate = new Date(e.target.value);
+  const year = selectedDate.getFullYear();
+  const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(selectedDate.getDate()).padStart(2, "0");
+  endDate = `${year}-${month}-${day}`;
+  setHistory();
+});
+
+document.getElementById("start-date").addEventListener("change", (e) => {
+  const selectedDate = new Date(e.target.value);
+  const year = selectedDate.getFullYear();
+  const month = String(selectedDate.getMonth() + 1).padStart(2, "0");
+  const day = String(selectedDate.getDate()).padStart(2, "0");
+  startDate = `${year}-${month}-${day}`;
+  setHistory();
+});

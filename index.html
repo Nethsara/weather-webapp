@@ -1080,14 +1080,20 @@
       </div>
 
       <div class="bg-white rounded-lg shadow p-4 mt-4">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">3 Days History</h2>
-        <table class="w-full">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">History</h2>
+        <div class="flex justify-between mb-4">
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" name="start-date" />
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" name="end-date" />
+        </div>
+        <table class="w-full border-collapse">
           <thead>
             <tr>
-              <th class="px-4 py-2">Date</th>
-              <th class="px-4 py-2">Temperature</th>
-              <th class="px-4 py-2"></th>
-              <th class="px-4 py-2">Condition</th>
+              <th class="px-4 py-2 border">Date</th>
+              <th class="px-4 py-2 border">Temperature</th>
+              <th class="px-4 py-2 border"></th>
+              <th class="px-4 py-2 border">Condition</th>
             </tr>
           </thead>
           <tbody id="history-table"></tbody>
