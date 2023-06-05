@@ -1,0 +1,123 @@
+<div id="parent" x-cloak="" x-data="{ windDirection: 240, windSpeed: 5 }">
+  <div class="controls">
+    <div class="card">
+      <label>Wind direction</label>
+      <input
+        max="360"
+        min="0"
+        step="3"
+        type="range"
+        x-model="windDirection"
+        @change="changeConditionsArrow(windDirection);"
+        @input="changeConditionsArrow(windDirection);"
+      />
+    </div>
+    <div class="card">
+      <label>Wind speed</label>
+      <input max="36" min="0" step="3" type="range" x-model="windSpeed" />
+    </div>
+  </div>
+  <div class="card">
+    <div class="compass">
+      <!-- Just use two images of the same square size with odd resolution size (for 1px pivot). -->
+      <!-- Use opacity and fully saturate colors. -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 331 331">
+        <g fill="none" fill-rule="evenodd" opacity=".401">
+          <path
+            fill="#000"
+            d="M11.5 0 23 23H0z"
+            transform="translate(154 31)"
+          ></path>
+          <path
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+            d="m11.421 250 .158 17.999"
+            transform="translate(154 31)"
+          ></path>
+
+          <g
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+          >
+            <path
+              d="m.421 0 .158 17.999M.421 247l.158 17.999"
+              transform="rotate(30 19.555 457.394)"
+            ></path>
+          </g>
+
+          <g
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+          >
+            <path
+              d="m.421 0 .158 17.999M.421 247l.158 17.999"
+              transform="rotate(60 53.555 292.394)"
+            ></path>
+          </g>
+
+          <g
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+          >
+            <path
+              d="m.421 0 .158 17.999M.421 247l.158 17.999"
+              transform="rotate(90 66 232)"
+            ></path>
+          </g>
+
+          <g
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+          >
+            <path
+              d="m.421 0 .158 17.999M.421 247l.158 17.999"
+              transform="rotate(120 73.185 197.131)"
+            ></path>
+          </g>
+
+          <g
+            stroke="#000"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            stroke-width="2"
+          >
+            <path
+              d="m.421 0 .158 17.999M.421 247l.158 17.999"
+              transform="rotate(150 78.445 171.606)"
+            ></path>
+          </g>
+
+          <g
+            fill="#000"
+            font-family="Arial-BoldMT, Arial"
+            font-size="36"
+            font-weight="bold"
+          >
+            <text transform="translate(60 60)">
+              <tspan x="92.501" y="33">N</tspan>
+            </text>
+            <text transform="translate(60 60)">
+              <tspan x="178.494" y="118">E</tspan>
+            </text>
+            <text transform="translate(60 60)">
+              <tspan x="93.494" y="203">S</tspan>
+            </text>
+            <text transform="translate(60 60)">
+              <tspan x="3.511" y="118">W</tspan>
+            </text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>
