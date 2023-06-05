@@ -155,7 +155,6 @@ const setForecast = (data) => {
 
 const setHistory = async () => {
   const res = await retrieveHistory();
-  console.log(res);
   const weatherData = res.forecast.forecastday;
   const table = document.getElementById("history-table");
 

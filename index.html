@@ -16,131 +16,7 @@
     <link href="/assets/fontawesome/css/fontawesome.min.css" rel="stylesheet" />
     <link href="/assets/fontawesome/css/brands.min.css" rel="stylesheet" />
     <link href="/assets/fontawesome/css/solid.min.css" rel="stylesheet" />
-    <style>
-      body {
-        background-image: "";
-        background-size: cover;
-        background-position: center;
-      }
-
-      :root {
-        --elementWidth: 200px;
-        --gap: 20px;
-      }
-
-      .compass {
-        position: relative;
-        width: 100%;
-        height: var(--elementWidth);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .compass > * {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
-
-      .compass svg:not(.will-transform) {
-        filter: opacity(0.4);
-      }
-
-      .compass-content {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-family: "Arial", sans-serif;
-        font-size: calc(var(--elementWidth) / 5);
-        font-weight: bold;
-      }
-
-      .compass-content .unit {
-        font-size: calc(var(--elementWidth) / 8);
-        font-weight: 100;
-      }
-
-      .vertical-flex {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        text-align: center;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: "Arial", sans-serif;
-        font-size: 14px;
-        font-weight: bold;
-        color: rgba(0, 0, 0, 0.87);
-      }
-
-      .vertical-flex .info {
-        font-size: 12px;
-        font-weight: 100;
-        font-style: italic;
-        margin-top: 0.5rem;
-        white-space: nowrap;
-      }
-
-      .vertical-flex .info + .info {
-        margin-top: 0;
-      }
-
-      [x-cloak] {
-        display: none !important;
-      }
-
-      #parent {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .controls {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        flex-direction: column;
-        font-family: "Arial", sans-serif;
-      }
-
-      .card .compass svg:not(.will-transform) {
-        filter: opacity(0.4);
-      }
-
-      .card.active {
-        background-color: #3ab0d8;
-      }
-
-      .card.active .compass svg {
-        filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg) opacity(1);
-      }
-
-      .card.active .compass-content {
-        color: white;
-      }
-
-      .card.active .hour {
-        color: white;
-      }
-
-      .will-transform {
-        will-change: transform;
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/css/style.css" />
   </head>
 
   <body class="bg-opacity-75">
@@ -974,32 +850,40 @@
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4" id="predic_div">
           <div class="bg-purple-200 rounded-lg p-4">
-            <p class="text-gray-700" id="h1_time">12:00 PM</p>
-            <div class="wi text-2xl">
+            <p class="text-gray-700 text-center" id="h1_time">12:00 PM</p>
+            <div class="wi text-2xl flex justify-center">
               <div class="wi text-4xl" id="h1_icon-weather"></div>
             </div>
-            <p class="text-gray-700" id="h1_temp">Temperature: 28°C</p>
+            <p class="text-gray-700 text-center" id="h1_temp">
+              Temperature: 28°C
+            </p>
           </div>
           <div class="bg-blue-200 rounded-lg p-4">
-            <p class="text-gray-700" id="h2_time">12:00 PM</p>
-            <div class="wi text-2xl">
+            <p class="text-gray-700 text-center" id="h2_time">12:00 PM</p>
+            <div class="wi text-2xl flex justify-center">
               <div class="wi text-4xl" id="h2_icon-weather"></div>
             </div>
-            <p class="text-gray-700" id="h2_temp">Temperature: 28°C</p>
+            <p class="text-gray-700 text-center" id="h2_temp">
+              Temperature: 28°C
+            </p>
           </div>
           <div class="bg-green-200 rounded-lg p-4">
-            <p class="text-gray-700" id="h3_time">12:00 PM</p>
-            <div class="wi text-2xl">
+            <p class="text-gray-700 text-center" id="h3_time">12:00 PM</p>
+            <div class="wi text-2xl flex justify-center">
               <div class="wi text-4xl" id="h3_icon-weather"></div>
             </div>
-            <p class="text-gray-700" id="h3_temp">Temperature: 28°C</p>
+            <p class="text-gray-700 text-center" id="h3_temp">
+              Temperature: 28°C
+            </p>
           </div>
           <div class="bg-orange-200 rounded-lg p-4">
-            <p class="text-gray-700" id="h4_time">12:00 PM</p>
-            <div class="wi text-2xl">
+            <p class="text-gray-700 text-center" id="h4_time">12:00 PM</p>
+            <div class="wi text-2xl flex justify-center">
               <div class="wi text-4xl" id="h4_icon-weather"></div>
             </div>
-            <p class="text-gray-700" id="h4_temp">Temperature: 28°C</p>
+            <p class="text-gray-700 text-center" id="h4_temp">
+              Temperature: 28°C
+            </p>
           </div>
         </div>
       </div>
@@ -1010,29 +894,34 @@
         </h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div class="bg-purple-200 rounded-lg p-4">
-            <div class="wi text-2xl">
+            <div class="wi text-2xl flex justify-center">
               <i class="wi-sunrise text-purple-600"></i>
             </div>
-            <p class="text-gray-700" id="sunrise">Sunrise: 6:00 AM</p>
+            <p class="text-gray-700 text-center" id="sunrise">
+              Sunrise: 6:00 AM
+            </p>
           </div>
           <div class="bg-teal-200 rounded-lg p-4">
-            <div class="wi text-2xl">
+            <div class="wi text-2xl flex justify-center">
               <i class="wi-sunset text-teal-600"></i>
             </div>
-            <p class="text-gray-700" id="sunset">Sunset: 7:30 PM</p>
+            <p class="text-gray-700 text-center" id="sunset">Sunset: 7:30 PM</p>
           </div>
           <div class="bg-indigo-200 rounded-lg p-4">
-            <div class="wi text-2xl">
+            <div class="wi text-2xl flex justify-center">
               <i class="wi-moonrise text-indigo-600"></i>
             </div>
-            <p class="text-gray-700" id="moonrise">Moonrise: 7:30 PM</p>
+            <p class="text-gray-700 text-center" id="moonrise">
+              Moonrise: 7:30 PM
+            </p>
           </div>
-
           <div class="bg-red-200 rounded-lg p-4">
-            <div class="wi text-2xl">
+            <div class="wi text-2xl flex justify-center">
               <i class="wi-moonset text-red-600"></i>
             </div>
-            <p class="text-gray-700" id="moonset">Moonset: 7:30 PM</p>
+            <p class="text-gray-700 text-center" id="moonset">
+              Moonset: 7:30 PM
+            </p>
           </div>
         </div>
       </div>
@@ -1043,30 +932,48 @@
         </h2>
         <div class="flex flex-wrap -mx-4">
           <div class="w-full md:w-1/3 px-4 mb-4">
-            <div class="bg-yellow-200 rounded-lg p-4">
+            <div
+              class="bg-yellow-200 rounded-lg p-4 flex flex-col items-center justify-center"
+            >
               <div class="wi text-2xl">
                 <div class="wi text-4xl" id="d1_icon-weather"></div>
               </div>
-              <p class="text-gray-700" id="d1_date">Temperature: 28°C</p>
-              <p class="text-gray-700" id="d1_temp">Temperature: 28°C</p>
+              <p class="text-gray-700 text-center" id="d1_date">
+                Temperature: 28°C
+              </p>
+              <p class="text-gray-700 text-center" id="d1_temp">
+                Temperature: 28°C
+              </p>
             </div>
           </div>
           <div class="w-full md:w-1/3 px-4 mb-4">
-            <div class="bg-blue-200 rounded-lg p-4">
+            <div
+              class="bg-blue-200 rounded-lg p-4 flex flex-col items-center justify-center"
+            >
               <div class="wi text-2xl">
                 <div class="wi text-4xl" id="d2_icon-weather"></div>
               </div>
-              <p class="text-gray-700" id="d2_date">Temperature: 28°C</p>
-              <p class="text-gray-700" id="d2_temp">Temperature: 28°C</p>
+              <p class="text-gray-700 text-center" id="d2_date">
+                Temperature: 28°C
+              </p>
+              <p class="text-gray-700 text-center" id="d2_temp">
+                Temperature: 28°C
+              </p>
             </div>
           </div>
           <div class="w-full md:w-1/3 px-4 mb-4">
-            <div class="bg-green-200 rounded-lg p-4">
+            <div
+              class="bg-green-200 rounded-lg p-4 flex flex-col items-center justify-center"
+            >
               <div class="wi text-2xl">
                 <div class="wi text-4xl" id="d3_icon-weather"></div>
               </div>
-              <p class="text-gray-700" id="d3_date">Temperature: 28°C</p>
-              <p class="text-gray-700" id="d3_temp">Temperature: 28°C</p>
+              <p class="text-gray-700 text-center" id="d3_date">
+                Temperature: 28°C
+              </p>
+              <p class="text-gray-700 text-center" id="d3_temp">
+                Temperature: 28°C
+              </p>
             </div>
           </div>
         </div>
@@ -1075,12 +982,21 @@
       <div class="bg-white rounded-lg shadow p-4 mt-4">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">Weather Map</h2>
         <div class="flex justify-center">
-          <div id="weather-map" class="w-full h-64"></div>
+          <div id="weather-map" class="w-full h-64">
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://embed.windy.com/embed2.html?lat=7.023&lon=79.995&detailLat=7.023&detailLon=79.995&width=650&height=450&zoom=5&level=surface&overlay=wind&product=ecmwf&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&metricWind=default&metricTemp=default&radarRange=-1"
+              frameborder="0"
+            ></iframe>
+          </div>
         </div>
       </div>
 
       <div class="bg-white rounded-lg shadow p-4 mt-4">
-        <h2 class="text-lg font-semibold text-gray-800 mb-4">History</h2>
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">
+          History (7 Day Range from today)
+        </h2>
         <div class="flex justify-between mb-4">
           <label for="start-date">Start Date:</label>
           <input type="date" id="start-date" name="start-date" />
