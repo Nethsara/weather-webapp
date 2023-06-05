@@ -29,7 +29,16 @@ const retrieveData = async (latitude, longitude) => {
     });
 };
 
-const setLocation = (location) => {};
+const setLocation = (location) => {
+  document.getElementById(
+    "current-location"
+  ).innerText = `Location : ${location.name} / ${location.country}`;
+  document.getElementById(
+    "last-updated-time"
+  ).innerText = ` Last Updated: ${location.localtime}`;
+};
+
+const setData = (data) => {};
 
 const getWeatherData = async () => {
   try {
@@ -38,7 +47,6 @@ const getWeatherData = async () => {
       location.latitude,
       location.longitude
     );
-    console.log(weatherData);
     setLocation(weatherData.location);
     setData(weatherData.current);
   } catch (error) {

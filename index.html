@@ -162,6 +162,32 @@
 
       <div class="bg-white rounded-lg shadow p-4 mt-4">
         <h2 class="text-lg font-semibold text-gray-800 mb-4">
+          Current Location
+        </h2>
+        <p id="current-location" class="text-gray-700">Loading...</p>
+        <p id="last-updated-time" class="text-gray-700">
+          Last Updated: Loading...
+        </p>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-4 mt-4">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">Enter City</h2>
+        <input
+          type="text"
+          id="city-input"
+          class="border border-gray-300 rounded-md px-4 py-2 w-full"
+          placeholder="Enter city name"
+        />
+        <button
+          id="city-submit"
+          class="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Submit
+        </button>
+      </div>
+
+      <div class="bg-white rounded-lg shadow p-4 mt-4">
+        <h2 class="text-lg font-semibold text-gray-800 mb-4">
           Weather Prediction
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
