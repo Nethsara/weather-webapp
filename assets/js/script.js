@@ -22,7 +22,7 @@ const getCurrentLocation = () => {
 
 const retrieveWeather = async (latitude, longitude) => {
   const response = await fetch(
-    `http://api.weatherapi.com/v1/current.json?aqi=yes&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+    `http://api.weatherapi.com/v1/forecast.json?aqi=yes&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
   );
   const data = await response.json();
   return data;
@@ -97,22 +97,46 @@ const setCurrentWeather = (data) => {
   setAQ(data.air_quality);
 };
 
-const getWeatherData = async () => {
+const setPredictionToday = (data) => {
+  const currentHour = new Date().getHours();
+  for (
+    let index = currentHour + 1, y = 1;
+    index < currentHour + 5;
+    index++, y++
+  ) {
+    document.getElementById(`h${y}_time`).innerText = `${
+      data[index].time.split(" ")[1]
+    }`;
+    document.getElementById(
+      `h${y}_icon-weather`
+    ).innerHTML = `<img src="https://${
+      data[index].condition.icon.split("//")[1]
+    }">`;
+    document.getElementById(
+      `h${y}_temp`
+    ).innerText = `${data[index].temp_c} °C`;
+  }
+};
+
+const setAstro = (data) => {
+  console.log(data);
+};
+
+const setWeather = async () => {
   try {
     const location = await getCurrentLocation();
     const weatherData = await retrieveWeather(
       location.latitude,
       location.longitude
     );
-    setLocation(weatherData.location);
+    console.log(weatherData);
     setCurrentWeather(weatherData.current);
+    setLocation(weatherData.location);
+    setPredictionToday(weatherData.forecast.forecastday[0].hour);
+    setAstro(weatherData.forecast.forecastday[0].astro);
   } catch (error) {
     console.error(error);
   }
-};
-
-const setWeather = () => {
-  getWeatherData();
 };
 
 document.addEventListener("DOMContentLoaded", setWeather);
