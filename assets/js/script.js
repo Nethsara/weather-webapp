@@ -30,33 +30,21 @@ const getCurrentLocation = () => {
 };
 
 const retrieveWeather = async () => {
-  if (!city) {
-    const response = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
-    );
-    const data = await response.json();
-    return data;
-  }
-  const response = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${city}`
-  );
-  const data = await response.json();
-  return data;
+  const url = !city
+    ? `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+    : `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
+
+  const response = await fetch(url);
+  return response.json();
 };
 
 const retrieveHistory = async () => {
-  if (!city) {
-    const response = await fetch(
-      `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
-    );
-    const data = await response.json();
-    return data;
-  }
-  const response = await fetch(
-    `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${city}`
-  );
-  const data = await response.json();
-  return data;
+  const url = !city
+    ? `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+    : `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
+
+  const response = await fetch(url);
+  return response.json();
 };
 
 const setLocation = (location) => {
