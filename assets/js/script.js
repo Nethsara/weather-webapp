@@ -95,7 +95,29 @@ const setAQ = (aq) => {
       : "Unhealthy";
 };
 
+const setBackgroundImage = (day, condition) => {
+  console.log(day, condition);
+  const body = document.querySelector("body");
+  let imageUrl = "";
+
+  if (condition === "sunny") {
+    imageUrl = `/assets/images/images/${day}-clear.jpg`;
+  } else if (condition === "cloudy") {
+    imageUrl = `/assets/images/images/${day}-cloudy.jpg`;
+  } else if (condition === "rainy") {
+    imageUrl = `/assets/images/images/${day}-rain.jpg`;
+  }
+
+  imageUrl = `/assets/images/images/${day}-clear.jpg`;
+
+  console.log(imageUrl);
+  body.style.backgroundImage = `url(${imageUrl})`;
+};
 const setCurrentWeather = (data) => {
+  console.log(data);
+  const isDay = data.isDay === 1;
+
+  console.log(isDay);
   document.getElementById("temp").innerText = `${data.temp_c} °C`;
   document.getElementById("icon-weather").innerHTML = `<img src="https://${
     data.condition.icon.split("//")[1]
@@ -111,6 +133,7 @@ const setCurrentWeather = (data) => {
 
   setCompass(data.wind_dir, data.wind_kph);
   setAQ(data.air_quality);
+  setBackgroundImage(isDay ? "day" : "night", data.condition.text);
 };
 
 const setPredictionToday = (data) => {
