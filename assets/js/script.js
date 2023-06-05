@@ -31,8 +31,8 @@ const getCurrentLocation = () => {
 
 const retrieveWeather = async () => {
   const url = !city
-    ? `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
-    : `http://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
+    ? `https://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+    : `https://api.weatherapi.com/v1/forecast.json?aqi=yes&days=6&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
 
   const response = await fetch(url);
   return response.json();
@@ -40,8 +40,8 @@ const retrieveWeather = async () => {
 
 const retrieveHistory = async () => {
   const url = !city
-    ? `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
-    : `http://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
+    ? `https://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${latitude},${longitude}`
+    : `https://api.weatherapi.com/v1/history.json?days=6&dt=${startDate}&end_dt=${endDate}&key=b5c797c080df4a2bb9c80049231405&q=${city}`;
 
   const response = await fetch(url);
   return response.json();
