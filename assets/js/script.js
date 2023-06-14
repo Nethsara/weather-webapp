@@ -99,30 +99,29 @@ const setAQ = (aq) => {
 };
 
 const setBackgroundImage = (day, condition) => {
-  console.log(day, condition);
   const body = document.querySelector("body");
   let imageUrl = "";
 
-  switch (true) {
-    case condition.includes("cloudy"):
-      imageUrl = `/assets/images/images/day-cloud.jpg`;
-      break;
-    case condition.includes("sunny"):
-      imageUrl = `/assets/images/images/day-sunny.jpg`;
-      break;
-    case condition.includes("Thundery"):
-      imageUrl = `/assets/images/images/thunder.jpg`;
-      break;
-    default:
-      imageUrl = `/assets/images/images/default.jpg`;
-  }
+  // switch (true) {
+  //   case condition.includes("cloudy"):
+  //     imageUrl = `/assets/images/images/day-cloud.jpg`;
+  //     break;
+  //   case condition.includes("Sunny"):
+  //     imageUrl = `/assets/images/images/day-sunny.jpg`;
+  //     break;
+  //   case condition.includes("Thundery"):
+  //     imageUrl = `/assets/images/images/thunder.jpg`;
+  //     break;
+  //   default:
+  //     imageUrl = `/assets/images/images/default.jpg`;
+  // }
+  imageUrl = `/assets/images/images/def-back.jpg`;
+
   body.style.backgroundImage = `url(${imageUrl})`;
 };
 const setCurrentWeather = (data) => {
-  console.log(data);
   const isDay = data.isDay === 1;
 
-  console.log(isDay);
   document.getElementById("temp").innerText = `${data.temp_c} °C`;
   document.getElementById("icon-weather").innerHTML = `<img src="https://${
     data.condition.icon.split("//")[1]
