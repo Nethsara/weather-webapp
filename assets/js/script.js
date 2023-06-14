@@ -103,17 +103,19 @@ const setBackgroundImage = (day, condition) => {
   const body = document.querySelector("body");
   let imageUrl = "";
 
-  if (condition === "sunny") {
-    imageUrl = `/assets/images/images/${day}-clear.jpg`;
-  } else if (condition === "cloudy") {
-    imageUrl = `/assets/images/images/${day}-cloudy.jpg`;
-  } else if (condition === "rainy") {
-    imageUrl = `/assets/images/images/${day}-rain.jpg`;
+  switch (true) {
+    case condition.includes("cloudy"):
+      imageUrl = `/assets/images/images/day-cloud.jpg`;
+      break;
+    case condition.includes("sunny"):
+      imageUrl = `/assets/images/images/day-sunny.jpg`;
+      break;
+    case condition.includes("Thundery"):
+      imageUrl = `/assets/images/images/thunder.jpg`;
+      break;
+    default:
+      imageUrl = `/assets/images/images/default.jpg`;
   }
-
-  imageUrl = `/assets/images/images/${day}-clear.jpg`;
-
-  console.log(imageUrl);
   body.style.backgroundImage = `url(${imageUrl})`;
 };
 const setCurrentWeather = (data) => {
