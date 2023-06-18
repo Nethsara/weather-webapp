@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/Nethsara/SkyWatch">
-    <img src="images/logo/logo.png" alt="Logo" width="80" height="80">
+    <img src="/assetsimages/logo/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">SkyWatch Weather</h3>
